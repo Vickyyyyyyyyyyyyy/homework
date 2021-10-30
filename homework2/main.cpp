@@ -11,11 +11,11 @@
 
 const double EarthGravity = 9.8;
 
-//»спользуем контейнер с ключом х и значением у
+
 typedef std::map<double, double> Walls;
 typedef std::map<double, int> Interval;
 
-//—труктура - компоненты скорости ћ“
+
 typedef struct Velocity {
 	double v_x;
 	double v_y;
@@ -42,7 +42,7 @@ private:
 	double h0;
 	double x0;
 
-	double ymove, wall_x, wall_y, number_of_interval; //костыли
+	double ymove, wall_x, wall_y, number_of_interval;
 
 	inline double time(double x, double x0) { return (x - x0) / velocity.v_x; }
 	inline double xMove(double t) { return x0 + velocity.v_x * t; }
@@ -70,7 +70,7 @@ void Ball::setVelocity() {
 
 void Ball::BuildWalls() {
 	double tmpx, tmpy;
-	walls.insert(std::make_pair(-1, -1)); /*еще один костыль*/
+	walls.insert(std::make_pair(-1, -1)); 
 	int i = 0;
 	do {
 		file >> tmpx >> tmpy;
@@ -84,19 +84,19 @@ void Ball::BuildWalls() {
 
 void Ball::KudaUpal() {
 
-	//ѕолет вправо -> -> ->
+
 	std::map<double, double>::iterator it1;
 	for (it1 = std::next(walls.begin()); it1 != walls.end(); ++it1) {
 		number_of_interval++;
-		if (yMove(time(it1->first, x0)) < it1->second && yMove(time(it1->first, x0)) > 0) { //если y_шарика < h0
+		if (yMove(time(it1->first, x0)) < it1->second && yMove(time(it1->first, x0)) > 0) { 
 			wall_x = it1->first; wall_y = it1->second;
-			ymove = yMove(time(it1->first, x0)); //задаем высоту столкновени€
+			ymove = yMove(time(it1->first, x0)); 
 			std::cout << "Ball hitted wall with x = " << it1->first << std::endl;
 			std::cout << "visota udara " << yMove(time(it1->first, x0)) << std::endl;
 
-			h0 = yMove(time(it1->first, x0)); //задаем новую h0 как высоту столкновени€
-			x0 = it1->first; //задаем новый x0 как x_стенки
-			break; //дальше перебирать стенки нам не нужно - выходим из цикла
+			h0 = yMove(time(it1->first, x0)); 
+			x0 = it1->first; 
+			break; 
 		}
 
 		else if (yMove(time(it1->first, x0)) < 0)
@@ -108,9 +108,7 @@ void Ball::KudaUpal() {
 		}
 	}
 	
-	//— помощью итератора чистим наше дерево от стенок, сто€щих правее той, с которой было столкновение
-	//erase делаем так, чтобы итератор не тер€лс€ и не указывал на пустой блок пам€ти
-	//ѕосле чистки лишние стенки удалились справа и мы можем идти с конца дерева
+	
 	std::map<double, double>::iterator it2 = std::next(it1);
 	while (it2 != walls.end()) {
 		if (it2->first != NULL)
@@ -119,7 +117,7 @@ void Ball::KudaUpal() {
 			it2++;
 	}
 
-	//ѕолет влево <- <- <-
+	
  	if (ymove < wall_y && ymove > 0) {
 		std::map<double, double>::reverse_iterator it3;
 		for (it3 = std::next(walls.rbegin()); it3 != walls.rend(); ++it3) {
@@ -137,7 +135,7 @@ void Ball::KudaUpal() {
 				velocity.v_y = velocity.v_y - EarthGravity * time(it3->first, x0);
 
 				number_of_interval--;
-				break; //Ќашли столкновение - выходим из цикла
+				break; 
 			}
 
 			else if (yMove(time(it3->first, x0)) < 0)
@@ -147,7 +145,7 @@ void Ball::KudaUpal() {
 			}
 		}
 
-		//ѕо тем тем же правилам чистим стенки левее, использу€ реверсивный итератор контейнера
+		
 		std::map<double, double>::reverse_iterator it4 = std::next(it3);
 		while (it4 != walls.rend()) {
 			if (it4->first != NULL)
