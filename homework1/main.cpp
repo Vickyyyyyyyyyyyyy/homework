@@ -112,7 +112,7 @@ Dots get_result(Dots& mat) {
 
 
 int main() {
-    Dots mat = get_dots("input.txt");
+    Dots mat = get_dots("in.txt");
 
     Dots result = get_result(mat);
 
