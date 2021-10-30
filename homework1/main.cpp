@@ -116,8 +116,8 @@ int main() {
 
     Dots result = get_result(mat);
 
-    cout << "Left:\t" << result[0].first << " " << result[0].second << endl;
-    cout << "Right:\t" << result[1].first << " " << result[1].second << endl;
+    cout << "Leftmost:\t" << result[0].first << " " << result[0].second << endl;
+    cout << "Rightmost:\t" << result[1].first << " " << result[1].second << endl;
 
     return 0;
 }
