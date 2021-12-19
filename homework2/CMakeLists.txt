@@ -1,1 +1,2 @@
-add_executable(homework2 main.cpp strutils.cpp strutils.h)
+cmake_minimum_required (VERSION 3.8)
+add_executable (homework1 main.cpp)
