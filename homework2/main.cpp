@@ -99,5 +99,4 @@ int main(int argc, char** argv) {
         Trajectory test(argv[1]);
     }
 
-    return 0;
 }
