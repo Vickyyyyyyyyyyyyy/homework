@@ -21,22 +21,24 @@ public:
     int interval = 0;
     int fall_interval;
     int size = 0;
+    string filename_;
 
-    int findInterval(std::ifstream& infile);
+    int findInterval();
 
 };
 
 Trajectory::Trajectory(string filename) {
+    filename_ = filename;
 
-    std::ifstream infile(filename);
-    infile >> h;
-    infile >> velocity.first >> velocity.second;
-
-    fall_interval = findInterval(infile);
+    fall_interval = findInterval();
     std::cout << fall_interval << std::endl;
 }
 
-int Trajectory::findInterval(std::ifstream& infile) {
+int Trajectory::findInterval() {
+
+    std::ifstream infile(filename_);
+    infile >> h;
+    infile >> velocity.first >> velocity.second;
 
     while (1) {
         int target = 0;
@@ -67,7 +69,7 @@ int Trajectory::findInterval(std::ifstream& infile) {
 
         x = walls_[target].first;
         h = h + velocity.second * t + (G * t * t) / 2.0;
-        velocity.second = velocity.second + G * t;
+        velocity.second += G * t;
 
         if (h <= 0) {
             return interval;
@@ -87,13 +89,13 @@ int Trajectory::findInterval(std::ifstream& infile) {
             velocity.first *= -1;
         }
     }
+    
 }
 
 
 int main(int argc, char** argv) {
-    if (argc == 2) {
-        Trajectory test(argv[1]);
-    }
+
+    Trajectory test(argv[1]);
 
     return 0;
 }
