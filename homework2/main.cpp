@@ -95,8 +95,9 @@ int Trajectory::findInterval() {
 
 int main(int argc, char** argv) {
 
-    if (argc == 2)
+    if (argc == 2) {
         Trajectory test(argv[1]);
+    }
 
     return 0;
 }
