@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include <cmath>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -33,6 +33,7 @@ Trajectory::Trajectory(string filename) {
     infile >> velocity.first >> velocity.second;
 
     fall_interval = findInterval(infile);
+    std::cout << fall_interval << std::endl;
 }
 
 int Trajectory::findInterval(std::ifstream& infile) {
