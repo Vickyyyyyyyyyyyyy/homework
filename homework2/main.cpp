@@ -11,7 +11,7 @@ typedef vector<pair<double, double>> Walls;
 class Trajectory {
 public:
 
-    Trajectory(string filename);
+    Trajectory(const string& filename);
 
     pair<double, double> velocity;
     Walls walls_;
@@ -27,7 +27,7 @@ public:
 
 };
 
-Trajectory::Trajectory(string filename) {
+Trajectory::Trajectory(const string& filename) {
     filename_ = filename;
 
     fall_interval = findInterval();
@@ -95,7 +95,8 @@ int Trajectory::findInterval() {
 
 int main(int argc, char** argv) {
 
-    Trajectory test(argv[1]);
+    if (argc == 2)
+        Trajectory test(argv[1]);
 
     return 0;
 }
