@@ -46,7 +46,7 @@ int Trajectory::findInterval() {
         int target = 0;
         
         if (velocity.first < 0) {
-            target = 0;
+            target = interval - 1;
             return target;
         }
 
