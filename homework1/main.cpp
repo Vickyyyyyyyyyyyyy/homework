@@ -18,8 +18,8 @@ struct Point {
            std::cout << "Rightmost: " << this->x << " " << this->y << std::endl;
        }
     }
-
 };
+
 
 void findPoints(Point& fr, Point& fl, const std::string& filename) {
     std::ifstream infile(filename);
@@ -43,7 +43,7 @@ void findPoints(Point& fr, Point& fl, const std::string& filename) {
             sqrt(vectorn.first * vectorn.first + vectorn.second * vectorn.second));
 
 
-        cosine = round(cosine * 10000000000.0) / 10000000000.0;
+        cosine = round(cosine);
         if (cosine - min_dist_l <= 0 && (vectorn.first * y - vectorn.second * x) > 0)
         {
             min_dist_l = cosine;
@@ -74,4 +74,6 @@ int main()
     fl.printPoint(RIGHTMOST);
 
     return 0;
+
+ 
 }
