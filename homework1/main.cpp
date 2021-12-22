@@ -43,7 +43,7 @@ void findPoints(Point& fr, Point& fl, const std::string& filename) {
             sqrt(vectorn.first * vectorn.first + vectorn.second * vectorn.second));
 
 
-        cosine = round(cosine);
+        cosine = round(cosine * 1E10) / 1E10;
         if (cosine - min_dist_l <= 0 && (vectorn.first * y - vectorn.second * x) > 0)
         {
             min_dist_l = cosine;
