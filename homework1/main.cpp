@@ -39,7 +39,7 @@ void findPoints(Point& fr, Point& fl, const std::string& filename) {
             continue;
         }
 
-        double cosine = (vectorn.first * x + vectorn.second * y) / (sqrt(x * x + y * y) *
+        double cosine = (vectorn.first * x + vectorn.second * y) / (std::sqrt(x * x + y * y) *
             sqrt(vectorn.first * vectorn.first + vectorn.second * vectorn.second));
 
 
