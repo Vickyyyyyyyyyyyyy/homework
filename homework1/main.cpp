@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cmath>
 
 enum pointType { LEFTMOST, RIGHTMOST };
 
@@ -39,11 +40,11 @@ void findPoints(Point& fr, Point& fl, const std::string& filename) {
             continue;
         }
 
-        double cosine = (vectorn.first * x + vectorn.second * y) / (std::sqrt(x * x + y * y) *
+        double cosine = (vectorn.first * x + vectorn.second * y) / (sqrt(x * x + y * y) *
             sqrt(vectorn.first * vectorn.first + vectorn.second * vectorn.second));
 
 
-        cosine = std::round(cosine * 10000000000.0) / 10000000000.0;
+        cosine = round(cosine * 10000000000.0) / 10000000000.0;
         if (cosine - min_dist_l <= 0 && (vectorn.first * y - vectorn.second * x) > 0)
         {
             min_dist_l = cosine;
