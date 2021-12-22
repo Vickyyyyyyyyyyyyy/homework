@@ -46,7 +46,7 @@ int Trajectory::findInterval() {
         int target = 0;
         
         if (velocity.first < 0) {
-            target = interval - 1;
+            target = 0;
             return target;
         }
 
@@ -98,7 +98,7 @@ int Trajectory::findInterval() {
 int main(int argc, char** argv) {
 
    
-    Trajectory test("input.txt");
+    Trajectory test(argv[1]);
   
 
 }
